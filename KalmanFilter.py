@@ -12,7 +12,7 @@ class ExtendedKalmanFilter:
                  measurement_distance_stddev, measurement_angle_stddev):
         # The state. This is the important data of the Kalman filter.
         self.state = state
-        self.covariance = covariance
+        self.covariance =  covariance
 
         # Some constants.
         self.robot_width = robot_width
