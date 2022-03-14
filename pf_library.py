@@ -21,7 +21,7 @@ def find_cylinders(scan, scan_derivative, jump, min_dist): #y
     sum_ray, sum_depth, rays = 0.0, 0.0, 0
 
     for i in range(len(scan_derivative)):
-        if scan_derivative[i] < -jump:
+        if scan_derivative[i] <  -jump:
             # Start a new cylinder, independent of on_cylinder.
             on_cylinder = True
             sum_ray, sum_depth, rays = 0.0, 0.0, 0

@@ -55,7 +55,7 @@ class LegoLogfile(object):
 
             
             elif sp[0] == 'M':
-                ticks = (int(sp[2]), int(sp[6]))
+                ticks = (int(sp[2]),  int(sp[6]))
                 if first_motor_ticks:
                     self.motor_ticks = []
                     first_motor_ticks = False

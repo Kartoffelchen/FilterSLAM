@@ -19,7 +19,7 @@ def write_cylinders(file_desc, line_header, cylinder_list):
         file_desc.writelines("%.1f %.1f " % tuple(c))
         count+=1
     file_desc.writelines("\n")
-    print(" ### count :", count)
+    print(" ### count :",  count)
 
 # Utility to write a list of error ellipses to (one line of) a given file.
 # Line header defines the start of each line.

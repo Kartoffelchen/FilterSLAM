@@ -25,7 +25,7 @@ def compute_derivative(scan, min_dist):
 
 
 def find_cylinders(scan, scan_derivative, jump, min_dist): #y
-    cylinder_list = []
+    cylinder_list =  []
     on_cylinder = False
     sum_ray, sum_depth, rays = 0.0, 0.0, 0
 

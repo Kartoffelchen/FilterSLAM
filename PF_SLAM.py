@@ -16,7 +16,7 @@ class Particle:
         self.landmark_covariances = []
 
     def number_of_landmarks(self):
-        return len(self.landmark_positions)
+        return len( self.landmark_positions)
 
     @staticmethod
     def g(state, control, w):

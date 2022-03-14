@@ -11,7 +11,7 @@ class ExtendedKalmanFilterSLAM:
                  control_motion_factor, control_turn_factor,
                  measurement_distance_stddev, measurement_angle_stddev):
         self.state = state
-        self.covariance = covariance
+        self.covariance =  covariance
 
         # Some constants.
         self.robot_width = robot_width

@@ -13,7 +13,7 @@ def write_error_ellipses(file_desc, line_header, error_ellipse_list): #n
     file_desc.writelines( line_header )
     for e in error_ellipse_list:
         file_desc.writelines( "%.3f %.1f %.1f" % e)
-    file_desc.writelines( "\n" )
+    file_desc.writelines(  "\n" )
 
 # Find the derivative in scan data, ignoring invalid measurements.
 def compute_derivative(scan, min_dist): #y

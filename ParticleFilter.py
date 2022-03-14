@@ -18,7 +18,7 @@ class ParticleFilter:
         self.robot_width = robot_width
         self.scanner_displacement = scanner_displacement
         self.control_motion_factor = control_motion_factor
-        self.control_turn_factor = control_turn_factor
+        self.control_turn_factor =  control_turn_factor
         self.measurement_distance_stddev = measurement_distance_stddev
         self.measurement_angle_stddev = measurement_angle_stddev
 
