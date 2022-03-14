@@ -42,16 +42,16 @@ class LegoLogfile(object):
                     self.scan_data = []
                     first_scan_data = False
                 if s_record_has_count:
-                    self.scan_data.append(tuple(map(int, sp[3:])))
+                    self.scan_data.append(tuple( list(map(int, sp[3:]))))
                 else:
-                    self.scan_data.append(tuple(map(int, sp[2:])))
+                    self.scan_data.append(tuple( list(map(int, sp[2:]))))
 
             
             elif sp[0] == 'I':
                 if first_pole_indices:
                     self.pole_indices = []
                     first_pole_indices = False
-                self.pole_indices.append(tuple(map(int, sp[2:])))
+                self.pole_indices.append(tuple( list(map(int, sp[2:]))))
 
             
             elif sp[0] == 'M':
@@ -69,14 +69,14 @@ class LegoLogfile(object):
                 if first_filtered_positions:
                     self.filtered_positions = []
                     first_filtered_positions = False
-                self.filtered_positions.append( tuple( map(float, sp[1:])) )
+                self.filtered_positions.append( tuple( list(map(float, sp[1:]))) )
 
             
             elif sp[0] == 'E':
                 if first_filtered_stddev:
                     self.filtered_stddev = []
                     first_filtered_stddev = False
-                self.filtered_stddev.append( tuple( map(float, sp[1:])) )
+                self.filtered_stddev.append( tuple( list(map(float, sp[1:]))) )
                 
             
             elif sp[0] == 'L':
@@ -84,7 +84,7 @@ class LegoLogfile(object):
                     self.landmarks = []
                     first_landmarks = False
                 if sp[1] == 'C':
-                    self.landmarks.append( tuple(['C'] + map(float, sp[2:])) )
+                    self.landmarks.append( tuple(['C'] + list(map(float, sp[2:]))) )
                     
             
             elif sp[0] == 'D':
@@ -92,7 +92,7 @@ class LegoLogfile(object):
                     if first_detected_cylinders:
                         self.detected_cylinders = []
                         first_detected_cylinders = False
-                    cyl = map(float, sp[2:])
+                    cyl = list(map(float, sp[2:]))
                     self.detected_cylinders.append([(cyl[2*i], cyl[2*i+1]) for i in range(len(cyl)/2)])
 
             
@@ -101,7 +101,7 @@ class LegoLogfile(object):
                     if first_world_cylinders:
                         self.world_cylinders = []
                         first_world_cylinders = False
-                    cyl = map(float, sp[2:])
+                    cyl = list(map(float, sp[2:]))
                     self.world_cylinders.append([(cyl[2*i], cyl[2*i+1]) for i in range(len(cyl)/2)])
 
         f.close()
