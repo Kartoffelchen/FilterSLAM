@@ -29,8 +29,7 @@ def compute_derivative(scan, min_dist): #y
     jumps.append(0)
     return jumps
 
-# For each area between a left falling edge and a right rising edge,
-# determine the average ray number and the average depth.
+
 def find_cylinders(scan, scan_derivative, jump, min_dist): #y
     cylinder_list = []
     on_cylinder = False
@@ -53,48 +52,22 @@ def find_cylinders(scan, scan_derivative, jump, min_dist): #y
             rays += 1
     return cylinder_list
 
-# This function does all processing needed to obtain the cylinder observations.
-# It matches the cylinders and returns distance and angle observations together
-# with the cylinder coordinates in the world system, the scanner
-# system, and the corresponding cylinder index (in the list of estimated parameters).
-# In detail:
-# - It takes scan data and detects cylinders.
-# - For every detected cylinder, it computes its world coordinate using
-#   the polar coordinates from the cylinder detection and the robot's pose,
-#   taking into account the scanner's displacement.
-# - Using the world coordinate, it finds the closest cylinder in the
-#   list of current (estimated) landmarks, which are part of the current state.
-#   
-# - If there is such a closest cylinder, the (distance, angle) pair from the
-#   scan measurement (these are the two observations), the (x, y) world
-#   coordinates of the cylinder as determined by the measurement, the (x, y)
-#   coordinates of the same cylinder in the scanner's coordinate system,
-#   and the index of the matched cylinder are added to the output list.
-#   The index is the cylinder number in the robot's current state.
-# - If there is no matching cylinder, the returned index will be -1.
 def get_observations(scan, jump, min_dist, cylinder_offset, #y
                      robot,
                      max_cylinder_distance):
     der = compute_derivative(scan, min_dist)
     cylinders = find_cylinders(scan, der, jump, min_dist)
-    # Compute scanner pose from robot pose.
     scanner_pose = (
         robot.state[0] + cos(robot.state[2]) * robot.scanner_displacement,
         robot.state[1] + sin(robot.state[2]) * robot.scanner_displacement,
         robot.state[2])
 
-    # For every detected cylinder which has a closest matching pole in the
-    # cylinders that are part of the current state, put the measurement
-    # (distance, angle) and the corresponding cylinder index into the result list.
     result = []
     for c in cylinders:
-        # Compute the angle and distance measurements.
         angle = LegoLogfile.beam_index_to_angle(c[0])
         distance = c[1] + cylinder_offset
-        # Compute x, y of cylinder in world coordinates.
         xs, ys = distance*cos(angle), distance*sin(angle)
         x, y = LegoLogfile.scanner_to_world(scanner_pose, (xs, ys))
-        # Find closest cylinder in the state.
         best_dist_2 = max_cylinder_distance * max_cylinder_distance
         best_index = -1
         for index in range(robot.number_of_landmarks):
@@ -104,7 +77,6 @@ def get_observations(scan, jump, min_dist, cylinder_offset, #y
             if dist_2 < best_dist_2:
                 best_dist_2 = dist_2
                 best_index = index
-        # Always add result to list. Note best_index may be -1.
         result.append(((distance, angle), (x, y), (xs, ys), best_index))
 
     return result
