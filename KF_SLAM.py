@@ -1,9 +1,10 @@
 
 from math import sin, cos, pi, atan2, sqrt
 from numpy import *
-from helpes import get_observations, write_cylinders,\
-     write_error_ellipses, LegoLogfile
+from lego_robot import LegoLogfile
 
+from kf_slam_library import get_observations, write_cylinders, write_error_ellipses
+     
 class ExtendedKalmanFilterSLAM:
     def __init__(self, state, covariance,
                  robot_width, scanner_displacement,

@@ -1,7 +1,8 @@
 
 from math import sin, cos, pi, atan2, sqrt
 from numpy import *
-from helpers import get_observations, write_cylinders, LegoLogfile
+from kf_library import get_observations, write_cylinders
+from lego_robot import LegoLogfile
 
 
 class ExtendedKalmanFilter:

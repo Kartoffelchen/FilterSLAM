@@ -1,7 +1,8 @@
 
-from helpers import get_cylinders_from_scan, write_cylinders,\
+from lego_robot import LegoLogfile
+from pf_slam_library import get_cylinders_from_scan, write_cylinders,\
      write_error_ellipses, get_mean, get_error_ellipse_and_heading_variance,\
-     print_particles, LegoLogfile
+     print_particles
 from math import sin, cos, pi, atan2, sqrt, exp
 import copy
 import random

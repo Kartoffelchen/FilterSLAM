@@ -1,5 +1,6 @@
 
-from helpers import get_cylinders_from_scan, assign_cylinders, LegoLogfile
+from lego_robot import LegoLogfile
+from pf_library import get_cylinders_from_scan, assign_cylinders
 from math import sin, cos, pi, atan2, sqrt
 import random
 from scipy.stats import norm as normal_dist
